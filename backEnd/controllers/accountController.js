@@ -9,6 +9,10 @@ const getAccounts = (req, res) =>{
 //@route  POST /api/accounts
 //@access  private
 const addAccount = (req, res) =>{
+    if(!req.body.text) {
+        res.status(400)
+        throw new Error('Please add an account name')
+    }
     res.status(200).json({message: 'Add Account'})
 }
 

@@ -9,7 +9,11 @@ const getPayees = (req, res) =>{
 //@route  POST /api/payees
 //@access  private
 const addPayee = (req, res) =>{
-    res.status(200).json({message: 'Add Payee'})
+    if(!req.body.text) {
+        res.status(400)
+        throw new Error('Please add a Payee')
+    }
+    res.status(200).json({message: 'Add payee'})
 }
 
 //@desc Update Payees

@@ -1,17 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const {getPayees, addPayee, updatePayee, deletePayee} = require('../controllers/payeeController')
 
-router.get('/', (req, res) => {
-    res.status(200).json({message: 'Get Payees'})
-})
-router.post('/', (req, res) => {
-    res.status(200).json({message: 'Create Payee'})
-})
-router.put('/:id', (req, res) => {
-    res.status(200).json({message: `Edit Payee ${req.params.id}`})
-})
-router.delete('/:id', (req, res) => {
-    res.status(200).json({message: `Remove Payee ${req.params.id}`})
-})
+router.route('/').get(getPayees).post(addPayee)
+
+router.route('/:id').put(updatePayee).delete(deletePayee)
+
 
 module.exports = router

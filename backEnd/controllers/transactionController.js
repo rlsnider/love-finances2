@@ -9,6 +9,10 @@ const getTransactions = (req, res) =>{
 //@route  POST /api/transactions
 //@access  private
 const addTransaction = (req, res) =>{
+    if(!req.body.text) {
+        res.status(400)
+        throw new Error('please add text field')
+    }
     res.status(200).json({message: 'Add Transaction'})
 }
 

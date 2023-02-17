@@ -9,8 +9,13 @@ const getCategories = (req, res) =>{
 //@route  POST /api/categories
 //@access  private
 const addCategory = (req, res) =>{
+    if(!req.body.text) {
+        res.status(400)
+        throw new Error('Please add a new category')
+    }
     res.status(200).json({message: 'Add Category'})
 }
+
 
 //@desc Update Category
 //@route  PUT /api/categories/:id
