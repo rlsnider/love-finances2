@@ -6,4 +6,4 @@ const {getCategories, addCategory, updateCategory, deleteCategory} = require('..
 router.route('/').get(getCategories).post(addCategory)
 router.route('/:id').delete(deleteCategory).put(updateCategory)
 
-module.exports = router
+module.exports =router
