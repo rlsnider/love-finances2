@@ -1,34 +1,36 @@
+const asyncHandler = require('express-async-handler')
+
 //@desc Get payeess
 //@route  GET /api/payees
-//@access  private
-const getPayees = (req, res) =>{
+//@access  public
+const getPayees = asyncHandler(async(req, res) =>{
     res.status(200).json({message: 'Get Payees'})
-}
+})
 
 //@desc Create Payee
 //@route  POST /api/payees
-//@access  private
-const addPayee = (req, res) =>{
+//@access  public
+const addPayee = asyncHandler(async(req, res) =>{
     if(!req.body.text) {
         res.status(400)
         throw new Error('Please add a Payee')
     }
     res.status(200).json({message: 'Add payee'})
-}
+})
 
 //@desc Update Payees
 //@route  PUT /api/payees/:id
-//@access  private
-const updatePayee = (req, res) =>{
+//@access  public
+const updatePayee = asyncHandler(async(req, res) =>{
     res.status(200).json({message: `Update Payee ${req.params.id}`})
-}
+})
 
 //@desc delete Payees
 //@route  DELETE /api/payees/:id
-//@access  private
-const deletePayee = (req, res) =>{
+//@access  public
+const deletePayee = asyncHandler(async(req, res) =>{
     res.status(200).json({message: `Delete Payee ${req.params.id}`})
-}
+})
 
 
 module.exports ={
