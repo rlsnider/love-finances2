@@ -1,10 +1,45 @@
 const mongoose = require('mongoose')
 
-const transactionSchema = mongoose.Schema({
-    text:{
-        type: String,
-        required: [true, 'Please add a transaction']
-    }
-})
-
+const transactionSchema = mongoose.Schema(
+    {
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: 'User'
+        },
+        account: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: 'Account'
+        },
+        date: {
+            type : Date,
+            required: true,
+            default: Date.now,
+        },
+        payee: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: 'Payee'
+        },
+        category: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: 'Category'
+        },
+            deposit: {
+              type: Number,
+              required: true
+            },
+            payment: {
+              type: Number,
+              required: true
+            }
+          }, { timestamps: true });
+          
+        transactionSchema.virtual('balance').get(function () {
+            return (this.previousBalance || 0) + this.deposit - this.payment;
+          });
+        
+   
 module.exports = mongoose.model('Transaction', transactionSchema )
