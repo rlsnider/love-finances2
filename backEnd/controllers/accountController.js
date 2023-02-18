@@ -1,9 +1,12 @@
 const asyncHandler = require('express-async-handler')
+const Account = require('../models/accountModel')
+
 //@desc Get Accounts
 //@route  GET /api/accounts
 //@access  private
 const getAccounts = asyncHandler(async(req, res) =>{
-    res.status(200).json({message: 'Get Accounts'})
+    const accounts = await Account.find()
+    res.status(200).json(accounts)
 })
 
 //@desc Create Account
@@ -14,21 +17,40 @@ const addAccount = asyncHandler(async(req, res) =>{
         res.status(400)
         throw new Error('Please add an account name')
     }
-    res.status(200).json({message: 'Add Account'})
+    const account = await Account.create({
+        text: req.body.text
+    })
+    res.status(200).json(account)
 })
 
 //@desc Update Accounts
 //@route  PUT /api/accounts/:id
 //@access  private
 const updateAccount = asyncHandler(async(req, res) =>{
-    res.status(200).json({message: `Update Account ${req.params.id}`})
+    const account = await Account.findById(req.params.id)
+    res.status(200).json(account)
+    if(!account){
+        res.status(400)
+        throw new Error('Account not found')
+    }
+    const updatedAccount = await Account.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+    })
+    res.status(200).json(updatedAccount)
 })
 
 //@desc delete Accounts
 //@route  DELETE /api/account/:id
 //@access  private
 const deleteAccount = asyncHandler(async(req, res) =>{
-    res.status(200).json({message: `Delete Account ${req.params.id}`})
+    const account = await Account.findById(req.params.id)
+    res.status(200).json(account)
+    if(!account){
+        res.status(400)
+        throw new Error('Account not found')
+    }
+    await account.remove()
+    res.status(200).json({id: req.params.id})
 })
 
 

@@ -1,9 +1,12 @@
 const asyncHandler = require('express-async-handler')
+const Category = require('../models/categoryModel')
+
 //@desc Get Categories
 //@route  GET /api/categories
 //@access  private
 const getCategories = asyncHandler(async(req, res) =>{
-    res.status(200).json({message: 'Get Categories'})
+    const categories = await Category.find()
+    res.status(200).json(categories)
 })
 
 //@desc Create Category
@@ -14,7 +17,10 @@ const addCategory = asyncHandler(async(req, res) =>{
         res.status(400)
         throw new Error('Please add a new category')
     }
-    res.status(200).json({message: 'Add Category'})
+    const category = await Category.create({
+        text: req.body.text
+    })
+    res.status(200).json(category)
 })
 
 
@@ -22,14 +28,30 @@ const addCategory = asyncHandler(async(req, res) =>{
 //@route  PUT /api/categories/:id
 //@access  private
 const updateCategory = asyncHandler(async(req, res) =>{
-    res.status(200).json({message: `Update Category ${req.params.id}`})
+    const category = await Category.findById(req.params.id)
+    res.status(200).json(category)
+    if(!category) {
+        res.status(400)
+        throw new Error('Category not found')
+    }
+    const updatedCategory = await Category.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+    })
+    res.status(200).json(updatedCategory)
 })
 
 //@desc delete Category
 //@route  DELETE /api/categories/:id
 //@access  private
 const deleteCategory = asyncHandler(async(req, res) =>{
-    res.status(200).json({message: `Delete Category ${req.params.id}`})
+    const category = await Category.findById(req.params.id)
+    res.status(200).json(category)
+    if(!category) {
+        res.status(400)
+        throw new Error('Category not found')
+    }
+    await category.remove()
+    res.status(200).json({id: req.params.id})
 })
 
 
