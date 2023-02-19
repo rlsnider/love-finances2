@@ -4,6 +4,8 @@ import Login from './views/Login'
 import Register from './views/Register'
 import TransactionLog from './views/TransactionLog'
 import Header from './components/Header'
+import {ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
       </Routes>
     </div>
   </Router>
+  <ToastContainer />
  </>
   );
 }
