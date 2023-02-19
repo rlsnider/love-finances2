@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+
 const categorySchema = mongoose.Schema(
     {
         user: {
@@ -7,9 +8,10 @@ const categorySchema = mongoose.Schema(
             required: true,
             ref: 'User'
         },
-        text:{
+        name:{
             type: String,
-            required: [true, 'Please choose a category']
+            required: [true, 'Please add a category'],
+        
         }
     },
     {

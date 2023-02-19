@@ -7,10 +7,10 @@ const accountSchema = mongoose.Schema(
             required: true,
             ref: 'User'
         },
-        text:{
+        name:{
             type: String,
-            required: [true, 'Please choose an account']
-        }
+            required: [true, 'Please choose an account'],
+        },
     },
     {
         timestamps: true,

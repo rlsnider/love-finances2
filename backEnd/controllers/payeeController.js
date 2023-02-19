@@ -14,12 +14,12 @@ const getPayees = asyncHandler(async(req, res) =>{
 //@route  POST /api/payees
 //@access  public
 const addPayee = asyncHandler(async(req, res) =>{
-    if(!req.body.text) {
+    if(!req.body.name) {
         res.status(400)
         throw new Error('Please add a Payee')
     }
     const payee = await Payee.create({
-        text: req.body.text,
+        name: req.body.name,
         user: req.user.id,
     })
     res.status(200).json(payee)

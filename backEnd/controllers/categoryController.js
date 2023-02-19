@@ -14,12 +14,12 @@ const getCategories = asyncHandler(async(req, res) =>{
 //@route  POST /api/categories
 //@access  private
 const addCategory = asyncHandler(async(req, res) =>{
-    if(!req.body.text) {
+    if(!req.body.name) {
         res.status(400)
         throw new Error('Please add a new category')
     }
     const category = await Category.create({
-        text: req.body.text,
+        name: req.body.name,
         user: req.user.id,
     })
     res.status(200).json(category)

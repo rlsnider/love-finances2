@@ -7,10 +7,10 @@ const payeeSchema = mongoose.Schema(
             required: true,
             ref: 'User'
         },
-        text:{
+        name:{
             type: String,
-            required: [true, 'Please choose a payee']
-        }
+            required: [true, 'Please choose a payee'],
+        },
     },
     {
         timestamps: true,
