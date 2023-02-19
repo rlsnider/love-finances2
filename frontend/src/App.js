@@ -1,10 +1,25 @@
-
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import Homepage from './views/Homepage'
+import Login from './views/Login'
+import Register from './views/Register'
+import TransactionLog from './views/TransactionLog'
+import Header from './components/Header'
 
 function App() {
   return (
-    <div className='container' >
-   <h1> My App</h1>
+ <>
+  <Router>
+    <div className='container'>
+    <Header />
+      <Routes>
+        <Route path='/' element ={<Homepage />}/>
+        <Route path='/login' element ={<Login />} />
+        <Route path='/register' element ={<Register />} />
+        <Route path='/TransactionLog' element ={<TransactionLog />} />
+      </Routes>
     </div>
+  </Router>
+ </>
   );
 }
 
