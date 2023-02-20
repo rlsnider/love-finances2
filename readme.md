@@ -2,7 +2,7 @@
 
 ##This is intended to be a simple transaction tracking log to keep track of balances as you spend or recieve money.
 This project was done as a full MERN stack. (Mongo/Mongoose database, express and node for backend and React/Redux for frontend)
-It uses Jsonwebtoken and bcryptjs for authentication and encryption.
+It uses Jsonwebtoken and bcryptjs for authentication and encryption. 
 
 #Routes
 ##Routes on Users
@@ -50,7 +50,7 @@ It uses Jsonwebtoken and bcryptjs for authentication and encryption.
 |------------|---------------|-------------------|
 | GET        | /transactions | transaction log   |
 | POST       | /transactions | add a transaction |
-|            |               |                   |
+| DELETE     | /tr../:id     |delete transacrion |(not available in front end)
 
 ##Features
 These include multiple users, encryption and authorization for privacy and protection, with protected lists of accounts, categories and payees for each user. Loading spinners were used as well as imported icons from react-icons/fa and a dependency called Toastify to have pop up error messages rather than use an error page.
@@ -65,4 +65,9 @@ I'd also like to thank Micheal Kerr, one of our instructors here at the UNLV Hac
 #Known Problems --
 Because all accounts, categories and payees are linked and protected to an individual user, names must be unique. User Brad and User John cannot both have Checking Account. Mongoose does not allow duplicate entries.
 
-I would have liked to do more with the styling, but I just used a boiler plate of css that I have used before to get the app up and running. I felt that the functionality was more important.
+When the merge was done during Thursday's class, the application completely broke. I believe it may have been caused by material-UI not being compatible with redux or redux toolkits. I spent a couple of hours trying to fix it so I could use the code that was there, but I finally just started over. I was able to use a lot of the original code, but mostly it was from scratch. For 3 days work, I'm pretty happy with what I have.
+
+Drop down menu's in the Transaction Log have been implemented, and I started the coding for getting the balance by account, but I ran out of time. It's very close. I'm am going to finish it in the next few days just to say I have it done for my porfolio. There may still be bugs that I am unaware of in the Transaction log, as I have not had enough time to completely check it out. 
+
+#Wish List
+I would have liked to do more with the styling maybe even incorporating wordPress, but I just used a boiler plate of css that I have used before to get the app up and running. I felt that the functionality was more important. I would also like to deploy it. I'm thinking about putting it up with AWS. 
