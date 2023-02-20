@@ -34,7 +34,7 @@ function Homepage() {
     dispatch(getCategories())
     dispatch(getPayees())
     
-  }, [user, navigate, isError, message, dispatch] ) 
+  }, [user, navigate, isError,  message, dispatch] ) 
 
 if (isLoading) {
   return <Spinner />

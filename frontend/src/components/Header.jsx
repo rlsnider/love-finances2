@@ -20,7 +20,7 @@ function Header() {
         <Link to='/'>Love my Finances</Link>
       </div>
       <div>
-      <Link to  ='/transactionLog'>Transaction Log</Link>
+      <Link to  ='/transactions'>Transaction Log</Link>
       </div>
       <ul>
       
